@@ -53,7 +53,7 @@ Welcome to the Natours documentation. This API provides various functionalities 
 1. Clone the repository:
 
    ```bash
-   git cllone https://github.com/yourusername/your-api-name.git
+   git clone https://github.com/Olusegun-Light/Natours-API.git
    cd Natours
    ```
 
@@ -159,7 +159,7 @@ Once the server is up and running, you can use the provided API endpoints to int
 
 You can explore and test the API endpoints using the provided Postman collection. The collection includes all the defined API routes along with example requests and responses.
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.getpostman.com/collections/YOUR_POSTMAN_COLLECTION_ID)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/20337559/2s9Y5SWm44)
 
 Click the "Run in Postman" button above to import the collection into your Postman workspace.
 
