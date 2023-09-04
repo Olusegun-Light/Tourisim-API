@@ -3,12 +3,15 @@
 Welcome to the Tourism API! Discover exciting tours, share your experiences, and manage user profiles through this comprehensive API. Whether you're an adventure seeker, a tour operator, or an administrator, the Tourism API offers a range of functionalities to enhance your journey.
 
 #### **Tours**
+
 Explore a diverse collection of tours, each with its own unique charm and adventure. Retrieve tour details, ratings, and prices, or create, update, and delete tours as a tour operator. Get insights into tour statistics and discover upcoming tours in your desired location.
 
 #### **Reviews**
+
 Share your thoughts and feedback on tours by leaving reviews. The Reviews API enables you to create, update, and delete your reviews, allowing you to express your genuine experiences with other travelers.
 
 #### **Users**
+
 Connect with fellow travelers, manage your own profile, and enjoy seamless authentication. Sign up to join the Tourism community, log in to access your account, or reset your password if needed. Update your profile details, or choose to deactivate your account.
 
 Explore the Tourism API to make the most of your adventure and connect with like-minded travelers from around the world. Happy exploring!
@@ -103,6 +106,9 @@ Once the server is up and running, you can use the provided API endpoints to int
 
 - **Log In:** Log in with existing credentials to get an authentication token.
   `POST /login`
+
+- **Log Out:** Log in with existing credentials to get an authentication token.
+  `POST /logout`
 
 - **Forgot Password:** Request a password reset token to reset your password.
   `POST /forgotPassword`
