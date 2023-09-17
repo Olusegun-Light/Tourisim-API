@@ -30,21 +30,6 @@ mongoose
     console.log(":: Database  Connector Established ::");
   });
 
-// const testTour = new Tour({
-//   name: "The forest hiker",
-//   rating: 4.8,
-//   price: 497,
-// });
-// // save testTour to tours collection in database
-// testTour
-//   .save()
-//   .then((doc) => {
-//     console.log(doc);
-//   })
-//   .catch((err) => {
-//     console.log("ERROR 💥:", err);
-//   });
-
 // Set up server
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {

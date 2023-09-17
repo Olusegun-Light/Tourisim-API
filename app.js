@@ -13,6 +13,8 @@ const globalErrorHandler = require("./controllers/errorController");
 const tourRouter = require("./routes/tourRoute");
 const userRouter = require("./routes/userRoute");
 const reviewRouter = require("./routes/reviewRoute");
+const viewRouter = require("./routes/viewRoutes");
+const bookingRouter = require("./routes/bookingRoutes");
 
 const app = express();
 
@@ -71,9 +73,11 @@ app.use((req, res, next) => {
 });
 
 //  Specifying Middleware
+app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/reviews", reviewRouter);
+app.use("/api/v1/bookings", bookingRouter);
 
 // Handling unhandled routes
 // For all http methods

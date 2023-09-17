@@ -10,6 +10,10 @@ Explore a diverse collection of tours, each with its own unique charm and advent
 
 Share your thoughts and feedback on tours by leaving reviews. The Reviews API enables you to create, update, and delete your reviews, allowing you to express your genuine experiences with other travelers.
 
+#### **Bookings**
+
+Plan your trips with ease by making bookings for your favorite tours. Create bookings, retrieve booking details, and manage your bookings effortlessly. The Bookings API provides the functionality you need to reserve your spot on exciting adventures.
+
 #### **Users**
 
 Connect with fellow travelers, manage your own profile, and enjoy seamless authentication. Sign up to join the Tourism community, log in to access your account, or reset your password if needed. Update your profile details, or choose to deactivate your account.
@@ -66,7 +70,21 @@ Welcome to the Tourism documentation. This API provides various functionalities 
    npm install
    ```
 
-3. Set up environment variables by creating a `config.env` file.
+3. Set up environment variables by creating a `config.env` file with the following variables:
+
+   ```env
+   PORT=
+   DATABASE=
+   DATABASE_PASSWORD=
+   DATABASE_USERNAME=
+   JWT_SECRET=
+   JWT_EXPIRED_IN=
+   JWT_COOKIE_EXPIRES_IN=
+   EMAIL_USERNAME=
+   EMAIL_PASSWORD=
+   EMAIL_HOST=
+   EMAIL_PORT=
+   ```
 
 4. Start the server:
 
@@ -87,6 +105,7 @@ Authentication is implemented using JWT (JSON Web Tokens). To access protected r
 - **User Routes:** Manage user accounts, authentication, and profile updates.
 - **Tour Routes:** Manage tour information, statistics, and geospatial queries.
 - **Review Routes:** Handle reviews associated with tours.
+- **Booking Routes:** Create, retrieve, and manage tour bookings.
 - **Error Routes:** Middleware for handling errors.
 
 For detailed information about the available routes, refer to the [API Routes Documentation.](#api-usage)
@@ -160,6 +179,51 @@ Once the server is up and running, you can use the provided API endpoints to int
 
 - **Delete Review:** Delete a review (requires user or admin privileges).
   `DELETE /tours/:tourId/reviews/:id`
+
+### Bookings
+
+- **Create Booking Checkout Session:** Create a checkout session for booking a tour.
+  `GET /checkout-session/:tourId`
+
+- **Create Booking:** Create a booking for a tour.
+  `POST /bookings`
+
+- **Get Booking by ID:** Retrieve detailed information about a specific booking.
+  `GET /bookings/:id`
+
+- **Get All Bookings:** Retrieve a list of all bookings.
+  `GET /bookings`
+
+- **Update Booking:** Update details of a specific booking (requires admin or lead-guide privileges).
+  `PATCH /bookings/:id`
+
+- **Delete Booking:** Delete a booking (requires admin or lead-guide privileges).
+  `DELETE /bookings/:id`
+
+### View Routes
+
+In addition to the API routes, there are routes dedicated to rendering templates for various views:
+
+- **Overview:** Render the overview of all tours.
+  `GET /`
+
+- **Tour:** Render the details of a specific tour.
+  `GET /tour/:slug`
+
+- **Login Form:** Render the login form.
+  `GET /login`
+
+- **Signup Form:** Render the signup form.
+  `GET /signup`
+
+- **Account:** Render the user's account details.
+  `GET /me
+`
+- **My Tours:** Render the user's booked tours.
+  `GET /my-tours`
+
+- **User Data Submission:** Handle user data submission for updating profile information.
+  `POST /submit-user-data`
 
 ## Postman Collection
 
