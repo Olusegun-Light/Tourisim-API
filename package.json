@@ -21,6 +21,7 @@
     "express-rate-limit": "^6.9.0",
     "helmet": "^7.0.0",
     "hpp": "^0.2.3",
+    "html-to-text": "^9.0.5",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^5.13.17",
     "morgan": "^1.10.0",
@@ -29,6 +30,7 @@
     "pug": "^3.0.2",
     "sharp": "^0.32.5",
     "slugify": "^1.6.6",
+    "stripe": "^13.9.0",
     "validator": "^13.9.0",
     "xss-clean": "^0.1.4"
   },

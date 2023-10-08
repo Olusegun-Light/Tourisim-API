@@ -4,9 +4,9 @@ const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const factory = require("./handlerFactory");
 
-const stripe =
-  require("stripe")();
-  //  input your stripe secret key here
+const stripe = require("stripe")(
+  "sk_test_51NoyDIGn2Y7gh3TNzZqCV50goWDJ8jEtQPJJOkhLPKeWAsPqAS9dnZAUw0yTymtr6mWkhPQuV73MGHyLGpr85J8f00MSqHxk05"
+);
 
 exports.getCheckOutSession = catchAsync(async (req, res, next) => {
   // 1) get currently booked tour
