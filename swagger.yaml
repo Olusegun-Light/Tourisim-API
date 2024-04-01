@@ -1,0 +1,1036 @@
+openapi: 3.0.0
+info:
+  title: Tourism
+  description: "# Tourism API\n\nWelcome to the Tourism API! Discover exciting tours, share your experiences, and manage user profiles through this comprehensive API. Whether you're an adventure seeker, a tour operator, or an administrator, the Tourism API offers a range of functionalities to enhance your journey.\n\n**Tours**  \nExplore a diverse collection of tours, each with its own unique charm and adventure. Retrieve tour details, ratings, and prices, or create, update, and delete tours as a tour operator. Get insights into tour statistics and discover upcoming tours in your desired location.\n\n**Reviews**  \nShare your thoughts and feedback on tours by leaving reviews. The Reviews API enables you to create, update, and delete your reviews, allowing you to express your genuine experiences with other travelers.\n\n**Bookings**\n\nPlan your trips with ease by making bookings for your favorite tours. Create bookings, retrieve booking details, and manage your bookings effortlessly. The Bookings API provides the functionality you need to reserve your spot on exciting adventures.\n\n**Users**  \nConnect with fellow travelers, manage your own profile, and enjoy seamless authentication. Sign up to join the Tourism community, log in to access your account, or reset your password if needed. Update your profile details, or choose to deactivate your account.\n\nExplore the Natours API to make the most of your adventure and connect with like-minded travelers from around the world. Happy exploring!"
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://tourisim.onrender.com/
+  variables: {}
+paths:
+  /tours:
+    get:
+      tags:
+      - Tours
+      summary: Get ALL Tours
+      description: Retrieve a list of all available tours.
+      operationId: GetALLTours
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Tours
+      summary: Create New Tour
+      description: Create a new tour with the specified details. Requires admin or lead-guide privileges.
+      operationId: CreateNewTour
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateNewTourRequest'
+              - example:
+                  name: Tests Tour Average
+                  duration: 1
+                  maxGroupSize: 2
+                  difficulty: easy
+                  price: 397
+                  summary: Test
+                  imageCover: tour-1-cover.jpg
+            example:
+              name: Tests Tour Average
+              duration: 1
+              maxGroupSize: 2
+              difficulty: easy
+              price: 397
+              summary: Test
+              imageCover: tour-1-cover.jpg
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The tour ID
+    get:
+      tags:
+      - Tours
+      summary: Get Tour By Id
+      description: Retrieve detailed information about a specific tour.
+      operationId: GetTourById
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /tours/{ids}:
+    parameters:
+      - in: path
+        name: ids
+        schema:
+          type: integer
+        required: true
+        description: The user ID
+    patch:
+      tags:
+      - Tours
+      summary: Update Tour
+      description: Update the details of a tour by providing the new information. Requires admin or lead-guide privileges.
+      operationId: UpdateTour
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - imageCover
+              - images
+              - price
+              type: object
+              properties:
+                imageCover:
+                  type: string
+                  format: binary
+                images:
+                  type: string
+                  format: binary
+                price:
+                  type: integer
+                  format: int32
+                  example: 999
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/{idss}:
+    parameters:
+      - in: path
+        name: idss
+        schema:
+          type: string
+        required: true
+        description: The tour ID
+    delete:
+      tags:
+      - Tours
+      summary: Delete Tour
+      description: Delete a tour based on its ID. Requires admin or lead-guide privileges.
+      operationId: DeleteTour
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/top-5-cheap:
+    get:
+      tags:
+      - Tours
+      summary: Get Top 5  Cheap Tours
+      description: Retrive price list of tours from the cheapest.
+      operationId: GetTop5CheapTours
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /tours/tour-stats:
+    get:
+      tags:
+      - Tours
+      summary: Get Tour Stats
+      description: Retrieve statistical information about tours, including average rating and price range.
+      operationId: GetTourStats
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /tours/monthly-plan/2021:
+    get:
+      tags:
+      - Tours
+      summary: Get Monthly Plan
+      description: Retrive montly price of each tour
+      operationId: GetMonthlyPlan
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/tour-within/400/center/34.111745, -118.113491/unit/mi:
+    get:
+      tags:
+      - Tours
+      summary: Get Tours Within Radius
+      description: Discover upcoming tours within a specified radius of a location.
+      operationId: GetToursWithinRadius
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /tours/distances/34.111745, -118.113491/unit/mi:
+    get:
+      tags:
+      - Tours
+      summary: Get Distance to tours from point
+      description: Calculate distances from a specific location to all tours.
+      operationId: GetDistancetotoursfrompoint
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - Users
+      summary: GET ALL USERS
+      description: Retrieve a list of all users. Requires admin privileges.
+      operationId: GETALLUSERS
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/me:
+    get:
+      tags:
+      - Users
+      summary: Get Current User
+      description: Retrieve your own user profile information.
+      operationId: GetCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    patch:
+      tags:
+      - Users
+      summary: Update Users
+      description: Update your profile details, such as name and email.
+      operationId: UpdateUsers
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUsersRequest'
+              - example:
+                  name: guide
+            example:
+              name: guide
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/updateMe:
+    patch:
+      tags:
+      - Users
+      summary: Update Current User Data
+      description: Update your profile details, such as name and email.
+      operationId: UpdateCurrentUserData
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - photo
+              type: object
+              properties:
+                photo:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/deleteMe:
+    delete:
+      tags:
+      - Users
+      summary: Delete Current User
+      description: Deactivate your Natours account.
+      operationId: DeleteCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/{ids}:
+    parameters:
+      - in: path
+        name: ids
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    delete:
+      tags:
+      - Users
+      summary: Delete User
+      description: Delete a user account. Requires admin privileges.
+      operationId: DeleteUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/signup:
+    post:
+      tags:
+      - Authentication
+      summary: SignUp
+      description: Create a new user account by providing your name, email, and password.
+      operationId: SignUp
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/SignUpRequest'
+              - example:
+                  name: Light
+                  email: admmin@gmail.com
+                  password: '{{password}}'
+                  passwordConfirm: '{{password}}'
+                  role: admin
+            example:
+              name: Light
+              email: admmin@gmail.com
+              password: '{{password}}'
+              passwordConfirm: '{{password}}'
+              role: admin
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/login:
+    post:
+      tags:
+      - Authentication
+      summary: Login
+      description: Log in to your Natours account using your registered email and password.
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginRequest'
+              - example:
+                  email: q@gmail.com
+                  password: '11111111'
+            example:
+              email: q@gmail.com
+              password: '11111111'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/forgotPassword:
+    post:
+      tags:
+      - Authentication
+      summary: Forget Password
+      description: Forgot your password? Request a token to reset your password.
+      operationId: ForgetPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ForgetPasswordRequest'
+              - example:
+                  email: user4@new.io
+            example:
+              email: user4@new.io
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/updateMyPassword:
+    patch:
+      tags:
+      - Authentication
+      summary: Update Current User Password
+      description: Change your password after logging in for added security.
+      operationId: UpdateCurrentUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateCurrentUserPasswordRequest'
+              - example:
+                  passwordCurrent: '{{password}}'
+                  password: '{{password}}'
+                  passwordConfirm: '{{password}}'
+            example:
+              passwordCurrent: '{{password}}'
+              password: '{{password}}'
+              passwordConfirm: '{{password}}'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /users/resetPassword/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    patch:
+      tags:
+      - Authentication
+      summary: Reset password
+      description: Set a new password using a reset token received via email
+      operationId: Resetpassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/ResetpasswordRequest'
+              - example:
+                  password: '{{password}}'
+                  passwordConfirm: '{{password}}'
+            example:
+              password: '{{password}}'
+              passwordConfirm: '{{password}}'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews:
+    get:
+      tags:
+      - Reviews
+      summary: Get All Reviews
+      description: Retrieve all reviews.
+      operationId: GetAllReviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Reviews
+      summary: Create Reviews
+      description: Create a new review for a tour.
+      operationId: CreateReviews
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateReviewsRequest'
+              - example:
+                  review: Amazing!!
+                  rating: 4
+                  tour: 64e039e8771ee444f829988b
+                  user: 5c8a1dfa2f8fb814b56fa181
+            example:
+              review: Amazing!!
+              rating: 4
+              tour: 64e039e8771ee444f829988b
+              user: 5c8a1dfa2f8fb814b56fa181
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The review ID
+    get:
+      tags:
+      - Reviews
+      summary: Get Review
+      description: Retrieve detailed information about a specific review.
+      operationId: GetReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /reviews/{ids}:
+    parameters:
+      - in: path
+        name: ids
+        schema:
+          type: string
+        required: true
+        description: The review ID
+    delete:
+      tags:
+      - Reviews
+      summary: Delete Review
+      description: Delete a review. Requires user or admin privileges.
+      operationId: DeleteReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /reviews/{idss}:
+    parameters:
+      - in: path
+        name: idss
+        schema:
+          type: string
+        required: true
+        description: The review ID
+    patch:
+      tags:
+      - Reviews
+      summary: Update Review
+      description: Update an existing review. Requires user or admin privileges.
+      operationId: UpdateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateReviewRequest'
+              - example:
+                  rating: 1
+            example:
+              rating: 1
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/64e039e8771ee444f829988b/reviews:
+    post:
+      tags:
+      - Tours/Reviews
+      summary: Create New Review On Tour
+      description: Create a new review for a tour. Requires user privileges.
+      operationId: CreateNewReviewOnTour
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateNewReviewOnTourRequest'
+              - example:
+                  review: Great
+                  rating: 5
+            example:
+              review: Great
+              rating: 5
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /tours/5c88fa8cf4afda39709c2955/reviews:
+    get:
+      tags:
+      - Tours/Reviews
+      summary: Get All Reviews On Tour
+      description: Retrieve all reviews associated with a specific tour.
+      operationId: GetAllReviewsOnTour
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /bookings:
+    get:
+      tags:
+      - Bookings
+      summary: Get All Booking
+      operationId: GetAllBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Bookings
+      summary: Create New Booking
+      operationId: CreateNewBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /bookings/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The booking ID
+    get:
+      tags:
+      - Bookings
+      summary: Get Booking
+      operationId: GetBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Bookings
+      summary: Update Booking
+      operationId: UpdateBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    delete:
+      tags:
+      - Bookings
+      summary: Delete Booking
+      operationId: DeleteBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /bookings/checkout-session/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The booking ID
+    get:
+      tags:
+      - Bookings
+      summary: Pay For Booking
+      operationId: PayForBooking
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateNewTourRequest:
+      title: CreateNewTourRequest
+      required:
+      - name
+      - duration
+      - maxGroupSize
+      - difficulty
+      - price
+      - summary
+      - imageCover
+      type: object
+      properties:
+        name:
+          type: string
+        duration:
+          type: integer
+          format: int32
+        maxGroupSize:
+          type: integer
+          format: int32
+        difficulty:
+          type: string
+        price:
+          type: integer
+          format: int32
+        summary:
+          type: string
+        imageCover:
+          type: string
+      example:
+        name: Tests Tour Average
+        duration: 1
+        maxGroupSize: 2
+        difficulty: easy
+        price: 397
+        summary: Test
+        imageCover: tour-1-cover.jpg
+    UpdateUsersRequest:
+      title: UpdateUsersRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: guide
+    SignUpRequest:
+      title: SignUpRequest
+      required:
+      - name
+      - email
+      - password
+      - passwordConfirm
+      - role
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        passwordConfirm:
+          type: string
+        role:
+          type: string
+      example:
+        name: Light
+        email: admmin@gmail.com
+        password: '{{password}}'
+        passwordConfirm: '{{password}}'
+        role: admin
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: q@gmail.com
+        password: '11111111'
+    ForgetPasswordRequest:
+      title: ForgetPasswordRequest
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: user4@new.io
+    UpdateCurrentUserPasswordRequest:
+      title: UpdateCurrentUserPasswordRequest
+      required:
+      - passwordCurrent
+      - password
+      - passwordConfirm
+      type: object
+      properties:
+        passwordCurrent:
+          type: string
+        password:
+          type: string
+        passwordConfirm:
+          type: string
+      example:
+        passwordCurrent: '{{password}}'
+        password: '{{password}}'
+        passwordConfirm: '{{password}}'
+    ResetpasswordRequest:
+      title: ResetpasswordRequest
+      required:
+      - password
+      - passwordConfirm
+      type: object
+      properties:
+        password:
+          type: string
+        passwordConfirm:
+          type: string
+      example:
+        password: '{{password}}'
+        passwordConfirm: '{{password}}'
+    CreateReviewsRequest:
+      title: CreateReviewsRequest
+      required:
+      - review
+      - rating
+      - tour
+      - user
+      type: object
+      properties:
+        review:
+          type: string
+        rating:
+          type: integer
+          format: int32
+        tour:
+          type: string
+        user:
+          type: string
+      example:
+        review: Amazing!!
+        rating: 4
+        tour: 64e039e8771ee444f829988b
+        user: 5c8a1dfa2f8fb814b56fa181
+    UpdateReviewRequest:
+      title: UpdateReviewRequest
+      required:
+      - rating
+      type: object
+      properties:
+        rating:
+          type: integer
+          format: int32
+      example:
+        rating: 1
+    CreateNewReviewOnTourRequest:
+      title: CreateNewReviewOnTourRequest
+      required:
+      - review
+      - rating
+      type: object
+      properties:
+        review:
+          type: string
+        rating:
+          type: integer
+          format: int32
+      example:
+        review: Great
+        rating: 5
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Tours
+  description: >
+    # Tours
+
+
+    Explore the collection of tours offered by our platform. View detailed information about each tour, including its name, duration, difficulty level, ratings, and more. Create new tours, update existing ones, or delete tours as an authorized administrator.
+
+
+    The Tours API provides functionalities to:
+
+
+    - Retrieve a list of all available tours.
+
+    - Get detailed information about a specific tour.
+
+    - Create a new tour (admin or lead-guide privileges required).
+
+    - Update details of a tour (admin or lead-guide privileges required).
+
+    - Delete a tour (admin or lead-guide privileges required).
+
+    - Retrieve statistics about tours, such as average rating and price range.
+
+    - Discover upcoming tours within a specified radius of a location.
+
+    - Calculate distances from a specific location to all tours.
+
+
+    Explore and interact with the Tours API endpoints to plan your next adventure!
+- name: Users
+  description: "# Users\n\nInteract with user profiles using the Users API. Whether you're a traveler or an administrator, you can manage user accounts, update profiles, and retrieve user details.\n\nThe Users API provides functionalities to:\n\n- Create a new user account and sign up.\n- Log in with existing credentials to obtain an authentication token.\n- Request a password reset token to reset your password.\n- Set a new password using a reset token.\n- Retrieve your own profile information.\n- Update your profile details, such as name and email.\n- Deactivate your account.\n    \n\nFor administrators, the Users API also offers the ability to:\n\n- Retrieve a list of all users.\n- Get detailed information about a specific user.\n- Update user profiles.\n- Delete user accounts.\n    \n\nExplore the Users API endpoints to manage your account and connect with other users!"
+- name: Authentication
+  description: >
+    # Authentication
+
+
+    Secure your Natours journey with robust authentication mechanisms. The Authentication API provides a set of endpoints to manage user accounts, log in, and ensure the security of your data.
+
+
+    **Sign Up**
+
+    Create your Natours account by signing up with your name, email, and password. Upon successful registration, you'll receive an authentication token that grants you access to the Natours platform.
+
+
+    **Log In**
+
+    Log in to your Natours account using your registered email and password. Upon successful login, you'll receive an authentication token that you can use to access protected routes and functionalities.
+
+
+    **Password Reset**
+
+    Forgot your password? Request a password reset token to set a new password. Provide your registered email, and we'll send you a token that allows you to update your password securely.
+
+
+    **Updating Password**
+
+    Change your password with ease. After logging in, use the update password endpoint to set a new password while ensuring the security of your account.
+
+
+    **Token Expiry**
+
+    Authentication tokens have a limited lifespan for enhanced security. If your token expires, you'll need to log in again to obtain a new token.
+
+
+    Protect your Natours account and data with these secure authentication processes. Explore the Authentication API endpoints to ensure a safe and enjoyable journey!
+- name: Reviews
+  description: "# Reviews\n\nShare your feedback and experiences by reviewing tours that you've participated in. This collection offers functionalities to manage tour reviews, including creating, updating, and deleting reviews.\n\nThe Reviews API enables you to:\n\n- Retrieve all reviews associated with specific tours.\n- Get detailed information about a specific review.\n- Create a new review for a tour (user privileges required).\n- Update your review or others' reviews (user or admin privileges required).\n- Delete your review or others' reviews (user or admin privileges required).\n    \n\nFeel free to leave your thoughts about the tours you've joined, and let your voice be heard!"
+- name: Tours/Reviews
+- name: Bookings
+  description: >-
+    ## Bookings
+
+
+    Manage your tour bookings with ease using the Bookings API. This collection of endpoints simplifies the process of creating, updating, and retrieving booking details.
+
+
+    The Bookings API allows you to:
+
+
+    - Create new bookings for tours.
+
+    - Retrieve booking details.
+
+    - Update booking information.
+
+    - Get a list of all bookings.
+
+
+    Simplify your booking process and make the most of your travel experiences with the Bookings API!

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism Api</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('img/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 30px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 60px;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        main p {
+            font-size: 25px;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        button,
+        a.button {
+            padding: 25px 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: inline-block;
+            margin: 20px 60px;
+            background-color: rgba(29, 186, 196, 1);
+            border: none;
+        }
+
+        button:hover,
+        a.button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        footer {
+            text-align: center;
+            height: 30px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 15px;
+        }
+
+        footer p {
+            margin: 0;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Tourism API</h1>
+    </header>
+
+    <main>
+        <p>
+            Centered around tourism, this API facilitates tour booking for users. It boasts a variety of capabilities including tour listings, tour search functionality, user authentication, reviews, and a host of other features.
+        </p>
+        <a href="/api-docs" class="button" target="_blank" >Documentation</a>
+        <a href="https://github.com/Olusegun-Light/Tourisim-API" class="button" target="_blank" >GitHub</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Light</p>
+    </footer>
+
+</body>
+
+</html>

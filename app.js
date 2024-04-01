@@ -21,6 +21,11 @@ const app = express();
 
 app.enable("trust proxy");
 
+// Swagger
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
+
 // Global Middleware
 // Set security HTTP headers
 app.use(helmet());
@@ -81,6 +86,11 @@ app.use((req, res, next) => {
 });
 
 //  Specifying Middleware
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html")
+})
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/", viewRouter);
 app.use("/api/v1/tours", tourRouter);
 app.use("/api/v1/users", userRouter);
