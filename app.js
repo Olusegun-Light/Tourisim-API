@@ -8,6 +8,7 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -18,6 +19,10 @@ const viewRouter = require("./routes/viewRoutes");
 const bookingRouter = require("./routes/bookingRoutes");
 
 const app = express();
+
+//  Serving static files
+app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.enable("trust proxy");
 
@@ -74,8 +79,7 @@ app.use(
   })
 );
 
-//  Serving static files
-app.use(express.static(`${__dirname}/public`));
+
 
 // Test middleware
 app.use((req, res, next) => {
