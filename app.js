@@ -19,7 +19,7 @@ const bookingRouter = require("./routes/bookingRoutes");
 
 const app = express();
 
-app.enable("trust proxy");
+// app.enable("trust proxy");
 
 // Swagger
 const swaggerUi = require("swagger-ui-express");
